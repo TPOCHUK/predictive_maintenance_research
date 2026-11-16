@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Maintenance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div>
+                <h1>Predictive Maintenance</h1>
+                <p>Engine health monitoring system</p>
+            </div>
+            <div class="status">
+                <span class="status-dot"></span>
+                <span id="connection-status">Connecting…</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="control-panel">
+                <div class="section-heading">
+                    <h2>Engine monitoring</h2>
+                    <p>Select an engine to analyze its condition</p>
+                </div>
+
+                <div class="controls">
+                    <div class="select-group">
+                        <label for="engine-select">Engine ID</label>
+                        <select id="engine-select" disabled></select>
+                    </div>
+
+                    <button id="predict-button" disabled>Predict RUL</button>
+                    <div class="select-group">
+                        <label for="speed-select">Інтервал між циклами</label>
+                        <select id="speed-select">
+                            <option value="0.2">Швидко · 0.2 с</option>
+                            <option value="0.5" selected>Звичайно · 0.5 с</option>
+                            <option value="1">Повільно · 1 с</option>
+                        </select>
+                    </div>
+                    <button id="start-button" disabled>▶ Запустити симуляцію</button>
+                    <button id="stop-button" disabled>■ Зупинити</button>
+                </div>
+                <p id="simulation-status" role="status" aria-live="polite">Очікування…</p>
+                <progress id="simulation-progress" max="100" value="0"></progress>
+                <p id="request-error" role="alert"></p>
+            </section>
+
+            <section class="metrics">
+                <div class="metric-card">
+                    <span class="metric-label">Current cycle</span>
+                    <strong id="current-cycle">—</strong>
+                    <span class="metric-description">Latest received cycle</span>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">Predicted RUL</span>
+                    <strong id="predicted-rul">—</strong>
+                    <div class="reference-value">Еталонний RUL: <b id="reference-rul">—</b></div>
+                    <span id="prediction-comparison" class="metric-description">Еталон із FD001 · лише для демонстрації</span>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">Engine status</span>
+                    <strong id="engine-status" class="status-text">Waiting for telemetry</strong>
+                    <span class="metric-description">Based on model prediction</span>
+                </div>
+            </section>
+
+            <section class="chart-card">
+                <div class="chart-heading">
+                    <div>
+                        <h2>Загальний стан датчиків</h2>
+                        <p>Максимальне відхилення від перших 20 циклів. Червоні мітки — підтверджені аномалії.</p>
+                    </div>
+                </div>
+                <p id="anomaly-summary" role="status">Потрібно щонайменше 20 циклів для початкової бази.</p>
+                <div class="chart-container"><canvas id="overview-chart"></canvas></div>
+                <p class="monitor-note">Евристика: середнє за 5 циклів відхиляється більше ніж на 3σ протягом 3 циклів поспіль. Це статистична ознака дрейфу, а не діагноз поломки чи її фізичної причини. Постійні датчики не оцінюються.</p>
+                <div id="anomaly-events" class="event-list"></div>
+            </section>
+
+            <section class="chart-card">
+                <div class="chart-heading">
+                    <div>
+                        <h2>RUL prediction history</h2>
+                        <p>Зелена лінія — прогноз, пунктирна — еталонний RUL із FD001.</p>
+                    </div>
+                    <span class="chart-tag" id="rul-engine-label">—</span>
+                </div>
+                <div class="chart-container"><canvas id="rul-chart"></canvas></div>
+            </section>
+
+            <section class="chart-card">
+                <div class="chart-heading">
+                    <div>
+                        <h2>Sensor monitoring</h2>
+                        <p>Тонка лінія — вимірювання, товста — середнє за 5 циклів.</p>
+                    </div>
+                    <div class="sensor-control">
+                        <label for="sensor-select">Sensor</label>
+                        <select id="sensor-select"></select>
+                    </div>
+                </div>
+                <div class="chart-container"><canvas id="sensor-chart"></canvas></div>
+            </section>
+
+            <footer>Predictive Maintenance · NASA C-MAPSS FD001</footer>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

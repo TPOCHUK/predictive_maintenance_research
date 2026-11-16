@@ -1,0 +1,17 @@
+# Direct dependencies tested with Python 3.13.
+# Keep scikit-learn aligned with the saved scalers.
+numpy==2.5.4
+pandas==3.1.1
+scikit-learn==1.6.1
+joblib==1.6.0
+torch==2.15.0
+xgboost==3.4.1
+PyYAML==6.0.3
+SQLAlchemy==2.1.8
+psycopg[binary]==3.3.8
+paho-mqtt==2.2.0
+requests==2.34.2
+alembic==1.20.1
+python-dotenv==1.2.4
+fastapi==0.162.4
+uvicorn==0.54.0

@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #1e293b;
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.header p,
+.section-heading p,
+.chart-heading p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #15803d;
+    background: #dcfce7;
+    padding: 9px 14px;
+    border-radius: 20px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+.control-panel,
+.metric-card,
+.chart-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px;
+}
+
+.control-panel {
+    margin-bottom: 20px;
+}
+
+.section-heading h2,
+.chart-heading h2 {
+    font-size: 18px;
+    margin-bottom: 7px;
+}
+
+.controls {
+    display: flex;
+    align-items: end;
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.select-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 240px;
+}
+
+label {
+    font-size: 13px;
+    color: #64748b;
+}
+
+select {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    color: #1e293b;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+button:disabled {
+    background: #94a3b8;
+    cursor: wait;
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.metric-label {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.metric-card strong {
+    font-size: 30px;
+}
+
+.metric-description {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.status-text {
+    color: #15803d;
+    font-size: 24px !important;
+}
+
+.chart-card {
+    margin-bottom: 20px;
+}
+
+.chart-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.chart-tag {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.sensor-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sensor-control select {
+    padding: 8px;
+}
+
+footer {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+    padding: 20px;
+}
+
+.controls { flex-wrap: wrap; }
+.controls .select-group { width: 190px; }
+#stop-button { background: #b91c1c; }
+button:disabled, #stop-button:disabled { background: #94a3b8; cursor: default; }
+#simulation-status { margin: 16px 0 8px; color: #475569; }
+progress { width: 100%; height: 12px; accent-color: #2563eb; }
+#request-error { color: #b91c1c; margin-top: 8px; }
+#anomaly-summary { margin-bottom: 16px; color: #b45309; }
+.monitor-note { font-size: 13px; color: #64748b; line-height: 1.6; margin-top: 16px; }
+.event-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.event-list button { font-size: 12px; background: #fff1f2; color: #b91c1c; padding: 8px; }
+.reference-value { font-size: 16px; color: #475569; }
+.reference-value b { font-size: 24px; color: #7c3aed; }
+#prediction-comparison { line-height: 1.6; color: #475569; }
+#sensor-chart { scroll-margin-top: 24px; }
+
+@media (max-width: 700px) {
+    .app {
+        padding: 20px 14px;
+    }
+
+    .header {
+        align-items: flex-start;
+        gap: 16px;
+        flex-direction: column;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+    .controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .controls .select-group {
+        width: 100%;
+    }
+
+    .chart-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+}

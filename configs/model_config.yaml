@@ -1,0 +1,21 @@
+models:
+  lstm:
+    architecture: RULLSTM
+    weights: models/best_lstm_partial_w80.pt
+    window_size: 80
+    input_size: 27
+    hidden_size: 64
+    flag_mode: warmup
+    minimum_history_cycles: 1
+
+  cnn:
+    architecture: RULCNN
+    weights: models/best_cnn_partial_w80.pt
+    window_size: 80
+    input_size: 27
+    dropout: 0.3
+    flag_mode: available
+    minimum_history_cycles: 1
+
+  xgboost:
+    weights: models/best_xgboost_model.json

@@ -1,0 +1,65 @@
+data:
+  dataset: FD001
+  window_size: 80
+
+features:
+  base_features:
+    - cycle
+    - setting_1
+    - setting_2
+    - setting_3
+    - sensor_1
+    - sensor_2
+    - sensor_3
+    - sensor_4
+    - sensor_5
+    - sensor_6
+    - sensor_7
+    - sensor_8
+    - sensor_9
+    - sensor_10
+    - sensor_11
+    - sensor_12
+    - sensor_13
+    - sensor_14
+    - sensor_15
+    - sensor_16
+    - sensor_17
+    - sensor_18
+    - sensor_19
+    - sensor_20
+    - sensor_21
+
+  engineered_features:
+    - degradation_score
+
+  flag_columns:
+    lstm: degradation_warmup
+    cnn: degradation_available
+
+preprocessing:
+  scaler_paths:
+    lstm: artifacts/scaler_lstm_fd001.pkl
+    cnn: artifacts/scaler_cnn_fd001.pkl
+  detector_path: artifacts/degradation_detector.json
+
+feature_engineering:
+  baseline_cycles: 20
+  detector_window: 10
+
+  sensor_directions:
+    sensor_4: 1
+    sensor_7: -1
+    sensor_11: 1
+    sensor_12: -1
+    sensor_15: 1
+    sensor_20: -1
+    sensor_21: -1
+
+inference:
+  default_model: lstm
+  window_size: 80
+  device: cpu
+
+evaluation:
+  rul_cap: 125   # Limit true and predicted RUL for capped metrics.
